@@ -1,0 +1,64 @@
+name: Metro-Synapse Polyglot CI/CD
+
+on:
+  push:
+    branches: [ "main", "master" ]
+  pull_request:
+    branches: [ "main", "master" ]
+
+jobs:
+  test-backend-go:
+    name: Go Backend & Spatial Engine Tests
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Set up Go
+        uses: actions/setup-go@v5
+        with:
+          go-version: '1.23'
+      - name: Run Go Tests
+        run: |
+          cd backend-go
+          go mod tidy
+          go test -v ./...
+
+  test-ai-python:
+    name: Pure Python Scratch Neural Engine Tests
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - name: Run Python Unit Tests
+        run: |
+          cd ai-engine-python
+          python -m unittest discover tests
+
+  build-simulation-cpp:
+    name: C++ SIMD Kinetic & Green Corridor Build
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Compile and Run C++ Simulation
+        run: |
+          cd simulation-cpp
+          mkdir -p bin
+          g++ -O3 -std=c++17 src/kinetic_kernel.cpp src/green_corridor.cpp src/main_sim.cpp -o bin/sim
+          ./bin/sim
+
+  build-frontend-next:
+    name: Next.js 15 TypeScript Build
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Set up Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+      - name: Install and Build Frontend
+        run: |
+          cd frontend-next
+          npm ci
+          npm run build

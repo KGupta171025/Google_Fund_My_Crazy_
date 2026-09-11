@@ -1,0 +1,8 @@
+# Metro-Synapse AI Engine
+# Core algorithms, matrix tensors, autograd, and cellular automata are implemented 100% from first principles
+# with ZERO mandatory third-party dependencies.
+#
+# Optional extras for production deployments:
+# google-generativeai>=0.8.0
+# fastapi>=0.115.0
+# uvicorn>=0.32.0
