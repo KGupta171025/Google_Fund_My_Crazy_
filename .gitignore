@@ -32,10 +32,7 @@ simulation-cpp/bin/
 *.obj
 
 # Environment & IDE
-.env
-.env.local
-.env.production
 .DS_Store
 Thumbs.db
-.vscode/
 .idea/
+config.bat
