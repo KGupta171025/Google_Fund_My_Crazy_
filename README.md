@@ -4,10 +4,12 @@
 > **Google Gemini "Fund My Crazy" Challenge — ₹1 Crore Moonshot Initiative**  
 > **Target Track**: Primary: *Our Roads & Transportation* | Secondary: *Our Community & Living* & *Surprise Us!*  
 > **Official Campaign**: [https://fundmycrazy.com/](https://fundmycrazy.com/)  
-> **Live GitHub Repository**: [https://github.com/KGupta171025/Google_Fund_My_Crazy_](https://github.com/KGupta171025/Google_Fund_My_Crazy_)
+> **Live GitHub Repository**: [https://github.com/KGupta171025/Google_Fund_My_Crazy_](https://github.com/KGupta171025/Google_Fund_My_Crazy_)  
+> **Live 3D Digital Twin Demo**: [https://kgupta171025.github.io/Google_Fund_My_Crazy_/](https://kgupta171025.github.io/Google_Fund_My_Crazy_/)
 
 ---
 
+[![Live Demo](https://img.shields.io/badge/Live_3D_Demo-GitHub_Pages-2ea44f?logo=githubpages&logoColor=white)](https://kgupta171025.github.io/Google_Fund_My_Crazy_/)
 [![Go Core Tests](https://img.shields.io/badge/Go_Backend-100%25_Passing-00ADD8?logo=go&logoColor=white)](backend-go/)
 [![Python AI Scratch](https://img.shields.io/badge/Python_AI-Pure_Math_Autograd-3776AB?logo=python&logoColor=white)](ai-engine-python/)
 [![C++ SIMD Physics](https://img.shields.io/badge/C++_Engine-276M_Impulses%2Fsec-00599C?logo=cplusplus&logoColor=white)](simulation-cpp/)

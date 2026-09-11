@@ -1,0 +1,73 @@
+name: Deploy Metro-Synapse to GitHub Pages
+
+on:
+  push:
+    branches: ["main"]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+concurrency:
+  group: "pages"
+  cancel-in-progress: false
+
+jobs:
+  build:
+    name: Build Next.js 3D Digital Twin Static Export
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Detect package manager
+        id: detect-package-manager
+        run: |
+          echo "manager=npm" >> $GITHUB_OUTPUT
+          echo "command=ci" >> $GITHUB_OUTPUT
+          echo "runner=npx --no-install" >> $GITHUB_OUTPUT
+
+      - name: Setup Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: "20"
+          cache: ${{ steps.detect-package-manager.outputs.manager }}
+          cache-dependency-path: frontend-next/package-lock.json
+
+      - name: Setup Pages
+        uses: actions/configure-pages@v5
+
+      - name: Install dependencies
+        run: |
+          cd frontend-next
+          npm ci
+
+      - name: Build with Next.js (Static Export)
+        env:
+          NODE_ENV: production
+          NEXT_PUBLIC_BASE_PATH: /Google_Fund_My_Crazy_
+        run: |
+          cd frontend-next
+          npm run build
+
+      - name: Add .nojekyll file
+        run: touch frontend-next/out/.nojekyll
+
+      - name: Upload artifact
+        uses: actions/upload-pages-artifact@v3
+        with:
+          path: frontend-next/out
+
+  deploy:
+    name: Deploy to GitHub Pages
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    runs-on: ubuntu-latest
+    needs: build
+    steps:
+      - name: Deploy to GitHub Pages
+        id: deployment
+        uses: actions/deploy-pages@v4
